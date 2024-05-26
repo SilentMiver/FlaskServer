@@ -7,7 +7,7 @@ health_bp = Blueprint('health_bp', __name__)
 def health_check():
     service_name = "your-service-name"  # Замените на имя вашего сервиса
     try:
-        result = subprocess.run(['systemctl', 'is-active', service_name], stdout=subprocess.PIPE, text=True)
+        result = subprocess.run(["systemctl", "status", service_name], stdout=subprocess.PIPE, text=True)
         status = result.stdout.strip()
         if status == "active":
             return jsonify({'status': 'Running'})
